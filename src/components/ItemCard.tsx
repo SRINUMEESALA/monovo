@@ -88,18 +88,21 @@ const getColorCode = (color: string): string => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    margin: 6,
+    marginHorizontal: 16,
+    marginVertical: 8,
     backgroundColor: "#fff",
-    borderRadius: 8,
+    borderRadius: 12,
+    borderWidth: 1,
+    borderColor: "#f0f0f0",
     overflow: "hidden",
     shadowColor: "#000",
     shadowOffset: {
       width: 0,
-      height: 1,
+      height: 2,
     },
-    shadowOpacity: 0.08,
-    shadowRadius: 2,
-    elevation: 3,
+    shadowOpacity: 0.1,
+    shadowRadius: 4,
+    elevation: 4,
   },
   touchable: {
     flex: 1,

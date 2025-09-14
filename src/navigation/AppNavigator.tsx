@@ -16,6 +16,7 @@ const AppNavigator: React.FC = () => {
   return (
     <NavigationContainer>
       <Tab.Navigator
+        initialRouteName="Saved"
         screenOptions={({ route }) => ({
           tabBarIcon: ({ focused, color, size }) => {
             let iconName: keyof typeof Ionicons.glyphMap;
