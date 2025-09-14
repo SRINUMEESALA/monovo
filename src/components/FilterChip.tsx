@@ -1,5 +1,5 @@
-import React from "react";
-import { TouchableOpacity, Text, StyleSheet } from "react-native";
+import React, { useRef } from "react";
+import { TouchableOpacity, Text, StyleSheet, Animated } from "react-native";
 import { COLORS } from "../constants";
 
 interface FilterChipProps {
@@ -13,16 +13,40 @@ const FilterChip: React.FC<FilterChipProps> = ({
   isActive,
   onPress,
 }) => {
+  const scaleAnim = useRef(new Animated.Value(1)).current;
+
+  const handlePressIn = () => {
+    Animated.spring(scaleAnim, {
+      toValue: 0.92,
+      useNativeDriver: true,
+      tension: 300,
+      friction: 8,
+    }).start();
+  };
+
+  const handlePressOut = () => {
+    Animated.spring(scaleAnim, {
+      toValue: 1,
+      useNativeDriver: true,
+      tension: 300,
+      friction: 8,
+    }).start();
+  };
+
   return (
-    <TouchableOpacity
-      style={[styles.chip, isActive && styles.activeChip]}
-      onPress={onPress}
-      activeOpacity={0.7}
-    >
-      <Text style={[styles.chipText, isActive && styles.activeChipText]}>
-        {label}
-      </Text>
-    </TouchableOpacity>
+    <Animated.View style={{ transform: [{ scale: scaleAnim }] }}>
+      <TouchableOpacity
+        style={[styles.chip, isActive && styles.activeChip]}
+        onPress={onPress}
+        onPressIn={handlePressIn}
+        onPressOut={handlePressOut}
+        activeOpacity={0.7}
+      >
+        <Text style={[styles.chipText, isActive && styles.activeChipText]}>
+          {label}
+        </Text>
+      </TouchableOpacity>
+    </Animated.View>
   );
 };
 

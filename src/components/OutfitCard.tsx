@@ -1,5 +1,12 @@
-import React from "react";
-import { View, Text, Image, StyleSheet, TouchableOpacity } from "react-native";
+import React, { useRef, useEffect } from "react";
+import {
+  View,
+  Text,
+  Image,
+  StyleSheet,
+  TouchableOpacity,
+  Animated,
+} from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import { Outfit } from "../data/mockData";
 import { COLORS } from "../constants";
@@ -17,58 +24,104 @@ const OutfitCard: React.FC<OutfitCardProps> = ({
   onRemoveFromSaved,
   showSaveIcon = false,
 }) => {
-  return (
-    <TouchableOpacity style={styles.container} onPress={onPress}>
-      <View style={styles.imageContainer}>
-        {/* Asymmetric layout: Main card on left, two stacked cards on right */}
-        <View style={styles.layoutContainer}>
-          {/* Left side - Main card */}
-          <View style={styles.leftCard}>
-            <Image
-              source={{ uri: outfit.items.top?.image || outfit.image }}
-              style={styles.mainCardImage}
-            />
-          </View>
+  const scaleAnim = useRef(new Animated.Value(1)).current;
+  const fadeAnim = useRef(new Animated.Value(0)).current;
 
-          {/* Right side - Two stacked cards */}
-          <View style={styles.rightColumn}>
-            <View style={styles.rightCardTop}>
+  useEffect(() => {
+    // Card entrance animation
+    Animated.timing(fadeAnim, {
+      toValue: 1,
+      duration: 400,
+      useNativeDriver: true,
+    }).start();
+  }, [fadeAnim]);
+
+  const handlePressIn = () => {
+    Animated.spring(scaleAnim, {
+      toValue: 0.96,
+      useNativeDriver: true,
+      tension: 300,
+      friction: 10,
+    }).start();
+  };
+
+  const handlePressOut = () => {
+    Animated.spring(scaleAnim, {
+      toValue: 1,
+      useNativeDriver: true,
+      tension: 300,
+      friction: 10,
+    }).start();
+  };
+
+  return (
+    <Animated.View
+      style={[
+        styles.container,
+        {
+          transform: [{ scale: scaleAnim }],
+          opacity: fadeAnim,
+        },
+      ]}
+    >
+      <TouchableOpacity
+        style={styles.touchable}
+        onPress={onPress}
+        onPressIn={handlePressIn}
+        onPressOut={handlePressOut}
+        activeOpacity={0.8}
+      >
+        <View style={styles.imageContainer}>
+          {/* Asymmetric layout: Main card on left, two stacked cards on right */}
+          <View style={styles.layoutContainer}>
+            {/* Left side - Main card */}
+            <View style={styles.leftCard}>
               <Image
-                source={{ uri: outfit.items.bottom?.image || outfit.image }}
-                style={styles.rightCardImage}
+                source={{ uri: outfit.items.top?.image || outfit.image }}
+                style={styles.mainCardImage}
               />
             </View>
-            <View style={styles.rightCardBottom}>
-              <Image
-                source={{
-                  uri:
-                    outfit.items.shoes?.image ||
-                    outfit.items.bag?.image ||
-                    outfit.image,
-                }}
-                style={styles.rightCardImage}
-              />
+
+            {/* Right side - Two stacked cards */}
+            <View style={styles.rightColumn}>
+              <View style={styles.rightCardTop}>
+                <Image
+                  source={{ uri: outfit.items.bottom?.image || outfit.image }}
+                  style={styles.rightCardImage}
+                />
+              </View>
+              <View style={styles.rightCardBottom}>
+                <Image
+                  source={{
+                    uri:
+                      outfit.items.shoes?.image ||
+                      outfit.items.bag?.image ||
+                      outfit.image,
+                  }}
+                  style={styles.rightCardImage}
+                />
+              </View>
             </View>
           </View>
         </View>
-      </View>
-      <View style={styles.infoContainer}>
-        <Text style={styles.outfitName} numberOfLines={2}>
-          {outfit.name}
-        </Text>
-        {showSaveIcon && (
-          <TouchableOpacity
-            style={styles.saveIconContainer}
-            onPress={(e) => {
-              e.stopPropagation();
-              onRemoveFromSaved?.();
-            }}
-          >
-            <Ionicons name="bookmark" size={18} color={COLORS.ICON_PRIMARY} />
-          </TouchableOpacity>
-        )}
-      </View>
-    </TouchableOpacity>
+        <View style={styles.infoContainer}>
+          <Text style={styles.outfitName} numberOfLines={2}>
+            {outfit.name}
+          </Text>
+          {showSaveIcon && (
+            <TouchableOpacity
+              style={styles.saveIconContainer}
+              onPress={(e) => {
+                e.stopPropagation();
+                onRemoveFromSaved?.();
+              }}
+            >
+              <Ionicons name="bookmark" size={18} color={COLORS.ICON_PRIMARY} />
+            </TouchableOpacity>
+          )}
+        </View>
+      </TouchableOpacity>
+    </Animated.View>
   );
 };
 
@@ -88,6 +141,9 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.08,
     shadowRadius: 4,
     elevation: 3,
+  },
+  touchable: {
+    flex: 1,
   },
   imageContainer: {
     position: "relative",

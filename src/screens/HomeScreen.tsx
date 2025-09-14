@@ -6,8 +6,12 @@ import { mockClothingItems } from "../data/mockData";
 import { COLORS } from "../constants";
 
 const HomeScreen: React.FC = () => {
-  const renderItem = ({ item }: { item: any }) => (
-    <ItemCard item={item} showBorder={true} />
+  const renderItem = ({ item, index }: { item: any; index: number }) => (
+    <ItemCard
+      item={item}
+      showBorder={true}
+      animationDelay={index * 100} // Staggered animation
+    />
   );
 
   return (
@@ -25,6 +29,15 @@ const HomeScreen: React.FC = () => {
         numColumns={1}
         contentContainerStyle={styles.itemsList}
         showsVerticalScrollIndicator={false}
+        removeClippedSubviews={true}
+        maxToRenderPerBatch={5}
+        updateCellsBatchingPeriod={50}
+        initialNumToRender={8}
+        getItemLayout={(data, index) => ({
+          length: 120,
+          offset: 120 * index,
+          index,
+        })}
       />
     </SafeAreaView>
   );

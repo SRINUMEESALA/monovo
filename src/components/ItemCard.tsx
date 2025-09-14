@@ -1,5 +1,12 @@
-import React from "react";
-import { View, Text, Image, StyleSheet, TouchableOpacity } from "react-native";
+import React, { useRef, useEffect } from "react";
+import {
+  View,
+  Text,
+  Image,
+  StyleSheet,
+  TouchableOpacity,
+  Animated,
+} from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import { ClothingItem } from "../data/mockData";
 import { getColorCode, COLORS } from "../constants";
@@ -10,6 +17,7 @@ interface ItemCardProps {
   onRemoveFromSaved?: () => void;
   showSaveIcon?: boolean;
   showBorder?: boolean;
+  animationDelay?: number;
 }
 
 const ItemCard: React.FC<ItemCardProps> = ({
@@ -18,10 +26,58 @@ const ItemCard: React.FC<ItemCardProps> = ({
   onRemoveFromSaved,
   showSaveIcon = false,
   showBorder = false,
+  animationDelay = 0,
 }) => {
+  const scaleAnim = useRef(new Animated.Value(1)).current;
+  const fadeAnim = useRef(new Animated.Value(0)).current;
+
+  useEffect(() => {
+    // Card entrance animation with delay
+    setTimeout(() => {
+      Animated.timing(fadeAnim, {
+        toValue: 1,
+        duration: 300,
+        useNativeDriver: true,
+      }).start();
+    }, animationDelay);
+  }, [fadeAnim, animationDelay]);
+
+  const handlePressIn = () => {
+    Animated.spring(scaleAnim, {
+      toValue: 0.95,
+      useNativeDriver: true,
+      tension: 300,
+      friction: 10,
+    }).start();
+  };
+
+  const handlePressOut = () => {
+    Animated.spring(scaleAnim, {
+      toValue: 1,
+      useNativeDriver: true,
+      tension: 300,
+      friction: 10,
+    }).start();
+  };
+
   return (
-    <View style={[styles.container, showBorder && styles.borderedContainer]}>
-      <TouchableOpacity style={styles.touchable} onPress={onPress}>
+    <Animated.View
+      style={[
+        styles.container,
+        showBorder && styles.borderedContainer,
+        {
+          transform: [{ scale: scaleAnim }],
+          opacity: fadeAnim,
+        },
+      ]}
+    >
+      <TouchableOpacity
+        style={styles.touchable}
+        onPress={onPress}
+        onPressIn={handlePressIn}
+        onPressOut={handlePressOut}
+        activeOpacity={0.8}
+      >
         <View style={styles.imageContainer}>
           <Image source={{ uri: item.image }} style={styles.image} />
           {item.tags && item.tags.length > 0 && (
@@ -74,7 +130,7 @@ const ItemCard: React.FC<ItemCardProps> = ({
           </View>
         </View>
       </TouchableOpacity>
-    </View>
+    </Animated.View>
   );
 };
 
