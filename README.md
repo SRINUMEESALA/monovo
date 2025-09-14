@@ -1,4 +1,4 @@
-# React Native Assignment: Monova
+# React Native APP: Monova
 
 This project is a React Native application developed as part of the Monova - a fashion outfit management and styling app built with Expo.
 
