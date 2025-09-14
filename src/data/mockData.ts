@@ -32,7 +32,6 @@ export interface Collection {
 }
 
 export const mockClothingItems: ClothingItem[] = [
-  // TOPS
   {
     id: "1",
     name: "Crop Knot Detail Knit Top",
@@ -111,7 +110,6 @@ export const mockClothingItems: ClothingItem[] = [
     tags: ["Sporty"],
   },
 
-  // BOTTOMS
   {
     id: "8",
     name: "Denim Blue Denim Shorts",
@@ -179,7 +177,6 @@ export const mockClothingItems: ClothingItem[] = [
     tags: ["Cargo"],
   },
 
-  // DRESSES
   {
     id: "14",
     name: "Black Mini Dress",
@@ -225,7 +222,6 @@ export const mockClothingItems: ClothingItem[] = [
     tags: ["Cocktail"],
   },
 
-  // SHOES
   {
     id: "18",
     name: "Light Brown Sandals",
@@ -271,7 +267,6 @@ export const mockClothingItems: ClothingItem[] = [
     tags: ["Stiletto"],
   },
 
-  // BAGS
   {
     id: "22",
     name: "Dark Brown Handbag",
@@ -317,7 +312,6 @@ export const mockClothingItems: ClothingItem[] = [
     tags: ["Crossbody"],
   },
 
-  // ACCESSORIES
   {
     id: "26",
     name: "Golden Dangle Earrings",
