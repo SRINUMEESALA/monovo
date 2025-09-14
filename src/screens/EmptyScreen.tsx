@@ -1,6 +1,7 @@
 import React from "react";
 import { View, Text, StyleSheet } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
+import { COLORS } from "../constants";
 
 const EmptyScreen: React.FC = () => {
   return (
@@ -13,13 +14,13 @@ const EmptyScreen: React.FC = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#fff",
+    backgroundColor: COLORS.BACKGROUND,
     justifyContent: "center",
     alignItems: "center",
   },
   text: {
     fontSize: 18,
-    color: "#999",
+    color: COLORS.TEXT_LIGHT,
     fontWeight: "500",
   },
 });

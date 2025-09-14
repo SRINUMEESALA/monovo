@@ -1,5 +1,6 @@
 import React from "react";
 import { TouchableOpacity, Text, StyleSheet } from "react-native";
+import { COLORS } from "../constants";
 
 interface FilterChipProps {
   label: string;
@@ -30,23 +31,23 @@ const styles = StyleSheet.create({
     paddingHorizontal: 12,
     paddingVertical: 6,
     borderRadius: 16,
-    backgroundColor: "#f8f8f8",
+    backgroundColor: COLORS.BACKGROUND_SECONDARY,
     marginRight: 8,
     marginBottom: 8,
     borderWidth: 1,
-    borderColor: "#e0e0e0",
+    borderColor: COLORS.BORDER_LIGHT,
   },
   activeChip: {
-    backgroundColor: "#000",
-    borderColor: "#000",
+    backgroundColor: COLORS.PRIMARY,
+    borderColor: COLORS.PRIMARY,
   },
   chipText: {
     fontSize: 13,
     fontWeight: "500",
-    color: "#666",
+    color: COLORS.TEXT_TERTIARY,
   },
   activeChipText: {
-    color: "#fff",
+    color: COLORS.TEXT_ON_DARK,
   },
 });
 

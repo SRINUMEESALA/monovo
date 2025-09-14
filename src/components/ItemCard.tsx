@@ -2,6 +2,7 @@ import React from "react";
 import { View, Text, Image, StyleSheet, TouchableOpacity } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import { ClothingItem } from "../data/mockData";
+import { getColorCode, COLORS } from "../constants";
 
 interface ItemCardProps {
   item: ClothingItem;
@@ -38,7 +39,7 @@ const ItemCard: React.FC<ItemCardProps> = ({
                 onRemoveFromSaved?.();
               }}
             >
-              <Ionicons name="bookmark" size={20} color="#000" />
+              <Ionicons name="bookmark" size={20} color={COLORS.ICON_PRIMARY} />
             </TouchableOpacity>
           )}
         </View>
@@ -56,7 +57,10 @@ const ItemCard: React.FC<ItemCardProps> = ({
               <Text
                 style={{
                   ...styles.badgeText,
-                  color: item.color === "white" ? "#000" : "#fff",
+                  color:
+                    item.color === "white"
+                      ? COLORS.TEXT_PRIMARY
+                      : COLORS.TEXT_ON_DARK,
                 }}
               >
                 {item.color}
@@ -72,30 +76,17 @@ const ItemCard: React.FC<ItemCardProps> = ({
   );
 };
 
-const getColorCode = (color: string): string => {
-  const colorMap: { [key: string]: string } = {
-    black: "#000",
-    blue: "#4A90E2",
-    brown: "#8B4513",
-    white: "#fff",
-    gold: "#FFD700",
-    green: "#7ED321",
-    red: "#FF6B6B",
-  };
-  return colorMap[color.toLowerCase()] || "#ccc";
-};
-
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     marginHorizontal: 16,
     marginVertical: 8,
-    backgroundColor: "#fff",
+    backgroundColor: COLORS.CARD_BACKGROUND,
     borderRadius: 12,
     borderWidth: 1,
-    borderColor: "#f0f0f0",
+    borderColor: COLORS.CARD_BORDER,
     overflow: "hidden",
-    shadowColor: "#000",
+    shadowColor: COLORS.CARD_SHADOW,
     shadowOffset: {
       width: 0,
       height: 2,
@@ -132,7 +123,7 @@ const styles = StyleSheet.create({
     marginBottom: 4,
   },
   tagText: {
-    color: "#fff",
+    color: COLORS.TEXT_ON_DARK,
     fontSize: 9,
     fontWeight: "600",
   },
@@ -146,7 +137,7 @@ const styles = StyleSheet.create({
     height: 30,
     justifyContent: "center",
     alignItems: "center",
-    shadowColor: "#000",
+    shadowColor: COLORS.SHADOW,
     shadowOffset: {
       width: 0,
       height: 1,

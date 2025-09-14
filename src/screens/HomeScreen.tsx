@@ -3,6 +3,7 @@ import { View, Text, StyleSheet, FlatList } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import ItemCard from "../components/ItemCard";
 import { mockClothingItems } from "../data/mockData";
+import { COLORS } from "../constants";
 
 const HomeScreen: React.FC = () => {
   const renderItem = ({ item }: { item: any }) => <ItemCard item={item} />;
@@ -30,23 +31,23 @@ const HomeScreen: React.FC = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#fff",
+    backgroundColor: COLORS.BACKGROUND,
   },
   header: {
     paddingHorizontal: 16,
     paddingVertical: 16,
     borderBottomWidth: 1,
-    borderBottomColor: "#eee",
+    borderBottomColor: COLORS.BORDER,
   },
   title: {
     fontSize: 28,
     fontWeight: "700",
-    color: "#000",
+    color: COLORS.TEXT_PRIMARY,
     marginBottom: 4,
   },
   subtitle: {
     fontSize: 16,
-    color: "#666",
+    color: COLORS.TEXT_TERTIARY,
     fontWeight: "400",
   },
   scrollContainer: {

@@ -7,6 +7,7 @@ import { useSafeAreaInsets } from "react-native-safe-area-context";
 import SavedScreen from "../screens/SavedScreen";
 import HomeScreen from "../screens/HomeScreen";
 import BagScreen from "../screens/BagScreen";
+import { NAVIGATION_TITLES, TAB_NAMES, COLORS } from "../constants";
 
 const Tab = createBottomTabNavigator();
 
@@ -21,11 +22,11 @@ const AppNavigator: React.FC = () => {
           tabBarIcon: ({ focused, color, size }) => {
             let iconName: keyof typeof Ionicons.glyphMap;
 
-            if (route.name === "Home") {
+            if (route.name === TAB_NAMES.HOME) {
               iconName = focused ? "home" : "home-outline";
-            } else if (route.name === "Bag") {
+            } else if (route.name === TAB_NAMES.BAG) {
               iconName = focused ? "bag" : "bag-outline";
-            } else if (route.name === "Saved") {
+            } else if (route.name === TAB_NAMES.SAVED) {
               iconName = focused ? "bookmark" : "bookmark-outline";
             } else {
               iconName = "help-outline";
@@ -33,20 +34,20 @@ const AppNavigator: React.FC = () => {
 
             return <Ionicons name={iconName} size={size} color={color} />;
           },
-          tabBarActiveTintColor: "#000",
-          tabBarInactiveTintColor: "#999",
+          tabBarActiveTintColor: COLORS.TAB_ACTIVE,
+          tabBarInactiveTintColor: COLORS.TAB_INACTIVE,
           tabBarStyle: {
-            backgroundColor: "#fff",
+            backgroundColor: COLORS.BACKGROUND,
             borderTopWidth: 1,
-            borderTopColor: "#eee",
+            borderTopColor: COLORS.BORDER,
             paddingBottom: Math.max(insets.bottom, 5),
             paddingTop: 5,
             height: 60 + Math.max(insets.bottom - 5, 0),
           },
           headerStyle: {
-            backgroundColor: "#fff",
+            backgroundColor: COLORS.BACKGROUND,
             borderBottomWidth: 1,
-            borderBottomColor: "#eee",
+            borderBottomColor: COLORS.BORDER,
           },
           headerTitleStyle: {
             fontWeight: "600",
@@ -56,19 +57,19 @@ const AppNavigator: React.FC = () => {
         })}
       >
         <Tab.Screen
-          name="Home"
+          name={TAB_NAMES.HOME}
           component={HomeScreen}
-          options={{ title: "Home" }}
+          options={{ title: NAVIGATION_TITLES.HOME }}
         />
         <Tab.Screen
-          name="Bag"
+          name={TAB_NAMES.BAG}
           component={BagScreen}
-          options={{ title: "Bag" }}
+          options={{ title: NAVIGATION_TITLES.BAG }}
         />
         <Tab.Screen
-          name="Saved"
+          name={TAB_NAMES.SAVED}
           component={SavedScreen}
-          options={{ title: "Saved" }}
+          options={{ title: NAVIGATION_TITLES.SAVED }}
         />
       </Tab.Navigator>
     </NavigationContainer>

@@ -1,6 +1,7 @@
 import React from "react";
 import { View, Text, StyleSheet } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
+import { COLORS } from "../constants";
 
 const BagScreen: React.FC = () => {
   return (
@@ -18,18 +19,18 @@ const BagScreen: React.FC = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#fff",
+    backgroundColor: COLORS.BACKGROUND,
   },
   header: {
     paddingHorizontal: 16,
     paddingVertical: 12,
     borderBottomWidth: 1,
-    borderBottomColor: "#eee",
+    borderBottomColor: COLORS.BORDER,
   },
   title: {
     fontSize: 24,
     fontWeight: "600",
-    color: "#000",
+    color: COLORS.TEXT_PRIMARY,
   },
   content: {
     flex: 1,
@@ -38,7 +39,7 @@ const styles = StyleSheet.create({
   },
   text: {
     fontSize: 18,
-    color: "#999",
+    color: COLORS.TEXT_LIGHT,
     fontWeight: "500",
   },
 });
