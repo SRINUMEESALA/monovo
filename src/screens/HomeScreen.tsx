@@ -6,7 +6,9 @@ import { mockClothingItems } from "../data/mockData";
 import { COLORS } from "../constants";
 
 const HomeScreen: React.FC = () => {
-  const renderItem = ({ item }: { item: any }) => <ItemCard item={item} />;
+  const renderItem = ({ item }: { item: any }) => (
+    <ItemCard item={item} showBorder={true} />
+  );
 
   return (
     <SafeAreaView style={styles.container}>

@@ -2,6 +2,7 @@ import React from "react";
 import { View, Text, Image, StyleSheet, TouchableOpacity } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import { Outfit } from "../data/mockData";
+import { COLORS } from "../constants";
 
 interface OutfitCardProps {
   outfit: Outfit;
@@ -16,15 +17,6 @@ const OutfitCard: React.FC<OutfitCardProps> = ({
   onRemoveFromSaved,
   showSaveIcon = false,
 }) => {
-  const renderItemImage = (item: any, style: any) => {
-    if (!item) return null;
-    return (
-      <View style={style}>
-        <Image source={{ uri: item.image }} style={styles.collageImage} />
-      </View>
-    );
-  };
-
   return (
     <TouchableOpacity style={styles.container} onPress={onPress}>
       <View style={styles.imageContainer}>
@@ -59,7 +51,11 @@ const OutfitCard: React.FC<OutfitCardProps> = ({
             </View>
           </View>
         </View>
-
+      </View>
+      <View style={styles.infoContainer}>
+        <Text style={styles.outfitName} numberOfLines={2}>
+          {outfit.name}
+        </Text>
         {showSaveIcon && (
           <TouchableOpacity
             style={styles.saveIconContainer}
@@ -68,14 +64,9 @@ const OutfitCard: React.FC<OutfitCardProps> = ({
               onRemoveFromSaved?.();
             }}
           >
-            <Ionicons name="bookmark" size={18} color="#000" />
+            <Ionicons name="bookmark" size={18} color={COLORS.ICON_PRIMARY} />
           </TouchableOpacity>
         )}
-      </View>
-      <View style={styles.infoContainer}>
-        <Text style={styles.outfitName} numberOfLines={2}>
-          {outfit.name}
-        </Text>
       </View>
     </TouchableOpacity>
   );
@@ -86,10 +77,10 @@ const styles = StyleSheet.create({
     width: "100%",
     marginHorizontal: 16,
     marginVertical: 8,
-    backgroundColor: "#fff",
+    backgroundColor: COLORS.CARD_BACKGROUND,
     borderRadius: 16,
     overflow: "hidden",
-    shadowColor: "#000",
+    shadowColor: COLORS.SHADOW,
     shadowOffset: {
       width: 0,
       height: 2,
@@ -101,7 +92,7 @@ const styles = StyleSheet.create({
   imageContainer: {
     position: "relative",
     height: 280,
-    backgroundColor: "#f8f8f8",
+    backgroundColor: COLORS.COLLAGE_BACKGROUND,
   },
   layoutContainer: {
     flex: 1,
@@ -165,19 +156,15 @@ const styles = StyleSheet.create({
     height: "100%",
     resizeMode: "cover",
   },
-  collageImage: {
-    width: "100%",
-    height: "100%",
-    resizeMode: "cover",
-  },
   infoContainer: {
     padding: 16,
     paddingTop: 12,
+    position: "relative",
   },
   outfitName: {
     fontSize: 16,
     fontWeight: "600",
-    color: "#000",
+    color: COLORS.TEXT_PRIMARY,
     marginBottom: 8,
     lineHeight: 20,
   },
@@ -200,7 +187,7 @@ const styles = StyleSheet.create({
   },
   saveIconContainer: {
     position: "absolute",
-    top: 16,
+    bottom: 64,
     right: 16,
     backgroundColor: "rgba(255, 255, 255, 0.95)",
     borderRadius: 16,

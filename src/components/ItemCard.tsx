@@ -9,6 +9,7 @@ interface ItemCardProps {
   onPress?: () => void;
   onRemoveFromSaved?: () => void;
   showSaveIcon?: boolean;
+  showBorder?: boolean;
 }
 
 const ItemCard: React.FC<ItemCardProps> = ({
@@ -16,9 +17,10 @@ const ItemCard: React.FC<ItemCardProps> = ({
   onPress,
   onRemoveFromSaved,
   showSaveIcon = false,
+  showBorder = false,
 }) => {
   return (
-    <View style={styles.container}>
+    <View style={[styles.container, showBorder && styles.borderedContainer]}>
       <TouchableOpacity style={styles.touchable} onPress={onPress}>
         <View style={styles.imageContainer}>
           <Image source={{ uri: item.image }} style={styles.image} />
@@ -83,8 +85,6 @@ const styles = StyleSheet.create({
     marginVertical: 8,
     backgroundColor: COLORS.CARD_BACKGROUND,
     borderRadius: 12,
-    borderWidth: 1,
-    borderColor: COLORS.CARD_BORDER,
     overflow: "hidden",
     shadowColor: COLORS.CARD_SHADOW,
     shadowOffset: {
@@ -94,6 +94,10 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.1,
     shadowRadius: 4,
     elevation: 4,
+  },
+  borderedContainer: {
+    borderWidth: 1,
+    borderColor: COLORS.CARD_BORDER,
   },
   touchable: {
     flex: 1,
