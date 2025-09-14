@@ -53,7 +53,14 @@ const ItemCard: React.FC<ItemCardProps> = ({
                 { backgroundColor: getColorCode(item.color) },
               ]}
             >
-              <Text style={styles.badgeText}>{item.color}</Text>
+              <Text
+                style={{
+                  ...styles.badgeText,
+                  color: item.color === "white" ? "#000" : "#fff",
+                }}
+              >
+                {item.color}
+              </Text>
             </View>
             <View style={styles.badge}>
               <Text style={styles.badgeText}>{item.style}</Text>
@@ -73,6 +80,7 @@ const getColorCode = (color: string): string => {
     white: "#fff",
     gold: "#FFD700",
     green: "#7ED321",
+    red: "#FF6B6B",
   };
   return colorMap[color.toLowerCase()] || "#ccc";
 };

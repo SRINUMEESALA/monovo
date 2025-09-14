@@ -7,6 +7,7 @@ import {
   ScrollView,
   TouchableOpacity,
 } from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
 import { Ionicons } from "@expo/vector-icons";
 import ItemCard from "../components/ItemCard";
 import FilterChip from "../components/FilterChip";
@@ -76,7 +77,7 @@ const ItemsScreen: React.FC = () => {
   const renderItem = ({ item }: { item: any }) => <ItemCard item={item} />;
 
   return (
-    <View style={styles.container}>
+    <SafeAreaView style={styles.container}>
       <View style={styles.header}>
         <Text style={styles.title}>Items</Text>
       </View>
@@ -99,7 +100,7 @@ const ItemsScreen: React.FC = () => {
         contentContainerStyle={styles.itemsList}
         showsVerticalScrollIndicator={false}
       />
-    </View>
+    </SafeAreaView>
   );
 };
 

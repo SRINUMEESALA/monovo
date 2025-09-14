@@ -1,5 +1,6 @@
 import React from "react";
 import { View, Text, FlatList, StyleSheet } from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
 import OutfitCard from "../components/OutfitCard";
 import { mockOutfits } from "../data/mockData";
 
@@ -9,7 +10,7 @@ const OutfitsScreen: React.FC = () => {
   );
 
   return (
-    <View style={styles.container}>
+    <SafeAreaView style={styles.container}>
       <View style={styles.header}>
         <Text style={styles.title}>Outfits</Text>
       </View>
@@ -22,7 +23,7 @@ const OutfitsScreen: React.FC = () => {
         contentContainerStyle={styles.outfitsList}
         showsVerticalScrollIndicator={false}
       />
-    </View>
+    </SafeAreaView>
   );
 };
 

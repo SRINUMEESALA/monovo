@@ -1,5 +1,6 @@
 import React, { useState, useMemo } from "react";
 import { View, Text, FlatList, StyleSheet, ScrollView } from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
 import ItemCard from "../components/ItemCard";
 import OutfitCard from "../components/OutfitCard";
 import FilterChip from "../components/FilterChip";
@@ -160,7 +161,7 @@ const SavedScreen: React.FC = () => {
   ];
 
   return (
-    <View style={styles.container}>
+    <SafeAreaView style={styles.container}>
       <View style={styles.header}>
         <Text style={styles.title}>Saved</Text>
       </View>
@@ -229,7 +230,7 @@ const SavedScreen: React.FC = () => {
           </View>
         </ScrollView>
       )}
-    </View>
+    </SafeAreaView>
   );
 };
 

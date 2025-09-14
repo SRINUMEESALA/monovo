@@ -6,6 +6,7 @@ import {
   StyleSheet,
   TouchableOpacity,
 } from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
 import ItemCard from "../components/ItemCard";
 import FilterChip from "../components/FilterChip";
 import { mockCollections, mockClothingItems } from "../data/mockData";
@@ -35,7 +36,7 @@ const CollectionsScreen: React.FC = () => {
   );
 
   return (
-    <View style={styles.container}>
+    <SafeAreaView style={styles.container}>
       <View style={styles.header}>
         <Text style={styles.title}>Collections</Text>
       </View>
@@ -59,7 +60,7 @@ const CollectionsScreen: React.FC = () => {
         contentContainerStyle={styles.itemsList}
         showsVerticalScrollIndicator={false}
       />
-    </View>
+    </SafeAreaView>
   );
 };
 
