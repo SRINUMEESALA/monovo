@@ -128,7 +128,7 @@ const OutfitCard: React.FC<OutfitCardProps> = ({
 const styles = StyleSheet.create({
   container: {
     width: "100%",
-    marginHorizontal: 16,
+    marginHorizontal: 0,
     marginVertical: 8,
     backgroundColor: COLORS.CARD_BACKGROUND,
     borderRadius: 16,
@@ -153,8 +153,8 @@ const styles = StyleSheet.create({
   layoutContainer: {
     flex: 1,
     flexDirection: "row",
-    gap: 8,
-    padding: 8,
+    gap: 12,
+    padding: 12,
   },
   leftCard: {
     flex: 1,
@@ -177,7 +177,7 @@ const styles = StyleSheet.create({
   },
   rightColumn: {
     flex: 1,
-    gap: 8,
+    gap: 12,
   },
   rightCardTop: {
     flex: 1,
@@ -213,15 +213,15 @@ const styles = StyleSheet.create({
     resizeMode: "cover",
   },
   infoContainer: {
-    padding: 16,
-    paddingTop: 12,
+    paddingHorizontal: 16,
+    paddingVertical: 12,
     position: "relative",
   },
   outfitName: {
     fontSize: 16,
     fontWeight: "600",
     color: COLORS.TEXT_PRIMARY,
-    marginBottom: 8,
+    marginBottom: 4,
     lineHeight: 20,
   },
   tagContainer: {
@@ -243,8 +243,8 @@ const styles = StyleSheet.create({
   },
   saveIconContainer: {
     position: "absolute",
-    bottom: 64,
-    right: 16,
+    bottom: 8,
+    right: 8,
     backgroundColor: "rgba(255, 255, 255, 0.95)",
     borderRadius: 16,
     width: 32,

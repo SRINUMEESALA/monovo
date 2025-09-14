@@ -204,7 +204,7 @@ const SavedScreen: React.FC = () => {
           data={mockOutfits.filter((outfit) => savedOutfits.has(outfit.id))}
           renderItem={renderOutfit}
           keyExtractor={(item) => item.id}
-          numColumns={2}
+          numColumns={1}
           contentContainerStyle={styles.outfitsList}
           showsVerticalScrollIndicator={false}
         />
@@ -233,10 +233,9 @@ const SavedScreen: React.FC = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#fff",
   },
   header: {
-    paddingHorizontal: 16,
+    paddingHorizontal: 12,
     paddingVertical: 12,
     borderBottomWidth: 1,
     borderBottomColor: "#eee",
@@ -290,7 +289,7 @@ const styles = StyleSheet.create({
     paddingBottom: 20,
   },
   outfitsList: {
-    paddingHorizontal: 8,
+    paddingHorizontal: 16,
     paddingTop: 16,
     paddingBottom: 20,
   },
