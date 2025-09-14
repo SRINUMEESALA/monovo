@@ -19,7 +19,7 @@ const OutfitsScreen: React.FC = () => {
         data={mockOutfits}
         renderItem={renderOutfit}
         keyExtractor={(item) => item.id}
-        numColumns={2}
+        numColumns={1}
         contentContainerStyle={styles.outfitsList}
         showsVerticalScrollIndicator={false}
       />
@@ -44,7 +44,6 @@ const styles = StyleSheet.create({
     color: "#000",
   },
   outfitsList: {
-    paddingHorizontal: 8,
     paddingTop: 16,
     paddingBottom: 20,
   },

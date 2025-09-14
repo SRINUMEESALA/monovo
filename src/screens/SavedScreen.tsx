@@ -154,11 +154,7 @@ const SavedScreen: React.FC = () => {
     />
   );
 
-  const collectionOptions = [
-    "All",
-    "Add new",
-    ...mockCollections.map((c) => c.name),
-  ];
+  const collectionOptions = ["All", ...mockCollections.map((c) => c.name)];
 
   return (
     <SafeAreaView style={styles.container}>

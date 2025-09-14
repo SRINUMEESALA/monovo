@@ -41,29 +41,29 @@ export const mockClothingItems: ClothingItem[] = [
     mood: "relaxed",
     color: "black",
     image:
-      "https://images.unsplash.com/photo-1594633312681-425c7b97ccd1?w=300&h=400&fit=crop",
+      "https://images.unsplash.com/photo-1503342217505-b0a15ec3261c?w=300&h=400&fit=crop",
     tags: ["Crop"],
   },
   {
     id: "2",
-    name: "Motif Printed Blouse",
+    name: "Motif Printed frock",
     type: "top",
     style: "elegant",
     mood: "sophisticated",
-    color: "blue",
+    color: "white",
     image:
-      "https://images.unsplash.com/photo-1594633312681-425c7b97ccd1?w=300&h=400&fit=crop",
+      "https://images.unsplash.com/photo-1515372039744-b8f02a3ae446?w=300&h=400&fit=crop",
     tags: ["Crop"],
   },
   {
     id: "3",
-    name: "Striped Cotton Poplin Shirt",
+    name: "Striped Cotton Poplin Pant",
     type: "top",
     style: "casual",
     mood: "fresh",
-    color: "blue",
+    color: "black",
     image:
-      "https://images.unsplash.com/photo-1594633312681-425c7b97ccd1?w=300&h=400&fit=crop",
+      "https://images.unsplash.com/photo-1541099649105-f69ad21f3246?w=300&h=400&fit=crop",
     tags: ["Striped"],
   },
   {
@@ -72,20 +72,20 @@ export const mockClothingItems: ClothingItem[] = [
     type: "top",
     style: "elegant",
     mood: "fresh",
-    color: "white",
+    color: "pink",
     image:
-      "https://images.unsplash.com/photo-1594633312681-425c7b97ccd1?w=300&h=400&fit=crop",
+      "https://images.unsplash.com/photo-1581044777550-4cfa60707c03?w=300&h=400&fit=crop",
     tags: ["Linen"],
   },
   {
     id: "5",
-    name: "Red Silk Blouse",
+    name: "Red Track Pant",
     type: "top",
     style: "elegant",
     mood: "sophisticated",
     color: "red",
     image:
-      "https://images.unsplash.com/photo-1594633312681-425c7b97ccd1?w=300&h=400&fit=crop",
+      "https://images.unsplash.com/photo-1551698618-1dfe5d97d256?w=300&h=400&fit=crop",
     tags: ["Silk"],
   },
   {
@@ -96,18 +96,18 @@ export const mockClothingItems: ClothingItem[] = [
     mood: "relaxed",
     color: "green",
     image:
-      "https://images.unsplash.com/photo-1594633312681-425c7b97ccd1?w=300&h=400&fit=crop",
+      "https://images.unsplash.com/photo-1571513720908-b3b1b6b5e8f0?w=300&h=400&fit=crop",
     tags: ["Vintage"],
   },
   {
     id: "7",
-    name: "Yellow Sporty Tank",
+    name: "Sporty Tshirt",
     type: "top",
     style: "sporty",
     mood: "bold",
-    color: "yellow",
+    color: "white",
     image:
-      "https://images.unsplash.com/photo-1594633312681-425c7b97ccd1?w=300&h=400&fit=crop",
+      "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=300&h=400&fit=crop",
     tags: ["Sporty"],
   },
 
@@ -120,18 +120,18 @@ export const mockClothingItems: ClothingItem[] = [
     mood: "relaxed",
     color: "blue",
     image:
-      "https://images.unsplash.com/photo-1594633312681-425c7b97ccd1?w=300&h=400&fit=crop",
+      "https://images.unsplash.com/photo-1591195853828-11db59a44f6b?w=300&h=400&fit=crop",
     tags: ["Denim"],
   },
   {
     id: "9",
-    name: "Wide Leg Seamless Trousers",
+    name: "Wide Seamless TShirt",
     type: "bottom",
     style: "elegant",
     mood: "sophisticated",
     color: "brown",
     image:
-      "https://images.unsplash.com/photo-1594633312681-425c7b97ccd1?w=300&h=400&fit=crop",
+      "https://images.unsplash.com/photo-1552374196-c4e7ffc6e126?w=300&h=400&fit=crop",
     tags: ["Wide Leg"],
   },
   {
@@ -142,29 +142,29 @@ export const mockClothingItems: ClothingItem[] = [
     mood: "relaxed",
     color: "black",
     image:
-      "https://images.unsplash.com/photo-1594633312681-425c7b97ccd1?w=300&h=400&fit=crop",
+      "https://images.unsplash.com/photo-1541099649105-f69ad21f3246?w=300&h=400&fit=crop",
     tags: ["Wide Leg"],
   },
   {
     id: "11",
-    name: "White High-Waist Jeans",
+    name: "White flowered frock",
     type: "bottom",
     style: "casual",
     mood: "fresh",
     color: "white",
     image:
-      "https://images.unsplash.com/photo-1594633312681-425c7b97ccd1?w=300&h=400&fit=crop",
+      "https://images.unsplash.com/photo-1581044777550-4cfa60707c03?w=300&h=400&fit=crop",
     tags: ["High-Waist"],
   },
   {
     id: "12",
-    name: "Red Midi Skirt",
+    name: "Skating Jacket",
     type: "bottom",
     style: "elegant",
     mood: "sophisticated",
-    color: "red",
+    color: "blue",
     image:
-      "https://images.unsplash.com/photo-1594633312681-425c7b97ccd1?w=300&h=400&fit=crop",
+      "https://images.unsplash.com/photo-1551698618-1dfe5d97d256?w=300&h=400&fit=crop",
     tags: ["Midi"],
   },
   {

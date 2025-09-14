@@ -16,12 +16,11 @@ const OutfitCard: React.FC<OutfitCardProps> = ({
   onRemoveFromSaved,
   showSaveIcon = false,
 }) => {
-  const renderItemImage = (item: any, size: "small" | "medium" = "small") => {
+  const renderItemImage = (item: any, style: any) => {
     if (!item) return null;
-
     return (
-      <View style={[styles.itemImage, size === "medium" && styles.mediumItem]}>
-        <Image source={{ uri: item.image }} style={styles.itemImageSource} />
+      <View style={style}>
+        <Image source={{ uri: item.image }} style={styles.collageImage} />
       </View>
     );
   };
@@ -29,15 +28,38 @@ const OutfitCard: React.FC<OutfitCardProps> = ({
   return (
     <TouchableOpacity style={styles.container} onPress={onPress}>
       <View style={styles.imageContainer}>
-        <Image source={{ uri: outfit.image }} style={styles.mainImage} />
-        <View style={styles.itemsOverlay}>
-          {renderItemImage(outfit.items.top, "medium")}
-          <View style={styles.bottomRow}>
-            {renderItemImage(outfit.items.bottom)}
-            {renderItemImage(outfit.items.shoes)}
-            {renderItemImage(outfit.items.bag)}
+        {/* Asymmetric layout: Main card on left, two stacked cards on right */}
+        <View style={styles.layoutContainer}>
+          {/* Left side - Main card */}
+          <View style={styles.leftCard}>
+            <Image
+              source={{ uri: outfit.items.top?.image || outfit.image }}
+              style={styles.mainCardImage}
+            />
+          </View>
+
+          {/* Right side - Two stacked cards */}
+          <View style={styles.rightColumn}>
+            <View style={styles.rightCardTop}>
+              <Image
+                source={{ uri: outfit.items.bottom?.image || outfit.image }}
+                style={styles.rightCardImage}
+              />
+            </View>
+            <View style={styles.rightCardBottom}>
+              <Image
+                source={{
+                  uri:
+                    outfit.items.shoes?.image ||
+                    outfit.items.bag?.image ||
+                    outfit.image,
+                }}
+                style={styles.rightCardImage}
+              />
+            </View>
           </View>
         </View>
+
         {showSaveIcon && (
           <TouchableOpacity
             style={styles.saveIconContainer}
@@ -46,21 +68,14 @@ const OutfitCard: React.FC<OutfitCardProps> = ({
               onRemoveFromSaved?.();
             }}
           >
-            <Ionicons name="bookmark" size={20} color="#000" />
+            <Ionicons name="bookmark" size={18} color="#000" />
           </TouchableOpacity>
         )}
       </View>
       <View style={styles.infoContainer}>
-        <Text style={styles.outfitName} numberOfLines={1}>
+        <Text style={styles.outfitName} numberOfLines={2}>
           {outfit.name}
         </Text>
-        <View style={styles.tagContainer}>
-          {outfit.tags.map((tag, index) => (
-            <View key={index} style={styles.tag}>
-              <Text style={styles.tagText}>{tag}</Text>
-            </View>
-          ))}
-        </View>
       </View>
     </TouchableOpacity>
   );
@@ -68,91 +83,129 @@ const OutfitCard: React.FC<OutfitCardProps> = ({
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    margin: 8,
+    width: "100%",
+    marginHorizontal: 16,
+    marginVertical: 8,
     backgroundColor: "#fff",
-    borderRadius: 8,
+    borderRadius: 16,
     overflow: "hidden",
     shadowColor: "#000",
     shadowOffset: {
       width: 0,
       height: 2,
     },
-    shadowOpacity: 0.1,
-    shadowRadius: 3.84,
-    elevation: 5,
+    shadowOpacity: 0.08,
+    shadowRadius: 4,
+    elevation: 3,
   },
   imageContainer: {
     position: "relative",
-    aspectRatio: 0.75,
+    height: 280,
+    backgroundColor: "#f8f8f8",
   },
-  mainImage: {
-    width: "100%",
-    height: "100%",
-    resizeMode: "cover",
-  },
-  itemsOverlay: {
-    position: "absolute",
-    bottom: 8,
-    right: 8,
-    flexDirection: "column",
-    alignItems: "flex-end",
-  },
-  itemImage: {
-    width: 30,
-    height: 30,
-    borderRadius: 4,
-    overflow: "hidden",
-    marginBottom: 4,
-    borderWidth: 1,
-    borderColor: "#fff",
-  },
-  mediumItem: {
-    width: 40,
-    height: 40,
-  },
-  itemImageSource: {
-    width: "100%",
-    height: "100%",
-    resizeMode: "cover",
-  },
-  bottomRow: {
+  layoutContainer: {
+    flex: 1,
     flexDirection: "row",
+    gap: 8,
+    padding: 8,
+  },
+  leftCard: {
+    flex: 1,
+    borderRadius: 12,
+    overflow: "hidden",
+    backgroundColor: "#fff",
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.1,
+    shadowRadius: 4,
+    elevation: 2,
+  },
+  mainCardImage: {
+    width: "100%",
+    height: "100%",
+    resizeMode: "cover",
+  },
+  rightColumn: {
+    flex: 1,
+    gap: 8,
+  },
+  rightCardTop: {
+    flex: 1,
+    borderRadius: 12,
+    overflow: "hidden",
+    backgroundColor: "#fff",
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.1,
+    shadowRadius: 4,
+    elevation: 2,
+  },
+  rightCardBottom: {
+    flex: 1,
+    borderRadius: 12,
+    overflow: "hidden",
+    backgroundColor: "#fff",
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.1,
+    shadowRadius: 4,
+    elevation: 2,
+  },
+  rightCardImage: {
+    width: "100%",
+    height: "100%",
+    resizeMode: "cover",
+  },
+  collageImage: {
+    width: "100%",
+    height: "100%",
+    resizeMode: "cover",
   },
   infoContainer: {
-    padding: 12,
+    padding: 16,
+    paddingTop: 12,
   },
   outfitName: {
-    fontSize: 14,
-    fontWeight: "500",
-    color: "#333",
+    fontSize: 16,
+    fontWeight: "600",
+    color: "#000",
     marginBottom: 8,
+    lineHeight: 20,
   },
   tagContainer: {
     flexDirection: "row",
     flexWrap: "wrap",
   },
   tag: {
-    backgroundColor: "#f0f0f0",
-    paddingHorizontal: 8,
+    backgroundColor: "#f5f5f5",
+    paddingHorizontal: 10,
     paddingVertical: 4,
-    borderRadius: 12,
+    borderRadius: 10,
     marginRight: 6,
     marginBottom: 4,
   },
   tagText: {
-    fontSize: 10,
+    fontSize: 11,
     color: "#666",
     fontWeight: "500",
   },
   saveIconContainer: {
     position: "absolute",
-    top: 8,
-    right: 8,
-    backgroundColor: "rgba(255, 255, 255, 0.9)",
-    borderRadius: 15,
-    width: 30,
-    height: 30,
+    top: 16,
+    right: 16,
+    backgroundColor: "rgba(255, 255, 255, 0.95)",
+    borderRadius: 16,
+    width: 32,
+    height: 32,
     justifyContent: "center",
     alignItems: "center",
     shadowColor: "#000",
@@ -160,7 +213,7 @@ const styles = StyleSheet.create({
       width: 0,
       height: 1,
     },
-    shadowOpacity: 0.2,
+    shadowOpacity: 0.15,
     shadowRadius: 2,
     elevation: 2,
   },
